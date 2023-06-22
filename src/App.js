@@ -29,7 +29,6 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/plans" element={<Plans />} />
         <Route path="/success" element={<Paymentsuccess />} />
-        {/* <Route path="/success" render={(props) => <Paymentsuccess paymentId={props.match.params.paymentId} />} /> */}
       </Routes>
     <Footer/>
     </Router>
