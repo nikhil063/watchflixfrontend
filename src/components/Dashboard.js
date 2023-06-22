@@ -31,7 +31,7 @@ const Dashboard = () => {
     })
       .then(() => {
         setMovies(movies.filter((movie) => movie._id !== id));
-        setSearchResults(searchResults.filter((movie) => movie._id !== id)); // Update searchResults state
+        setSearchResults(searchResults.filter((movie) => movie._id !== id)); 
         console.log('Movie deleted successfully.');
       })
       .catch((error) => {
