@@ -39,8 +39,8 @@ const Plans = () => {
             
             const paymentId = response.razorpay_payment_id;
             console.log(paymentId);
-            // alert(`Payment successful! Your payment id is ${paymentId}`)
-            window.location.href = `/success?paymentId=${paymentId}`;
+            alert(`Payment successful! Your payment id is ${paymentId}`)
+            // window.location.href = `/success?paymentId=${paymentId}`;
           },
 
           theme: {
