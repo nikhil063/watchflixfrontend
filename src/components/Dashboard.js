@@ -16,7 +16,7 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/movies`) 
+    fetch(`https://watchflixott.onrender.com/api/movies`) 
       .then((response) => response.json())
       .then((data) => setMovies(data))
       .catch((error) => {
@@ -26,7 +26,7 @@ const Dashboard = () => {
   
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:3001/api/movies/${id}`, {
+    fetch(`https://watchflixott.onrender.com/api/movies/${id}`, {
       method: 'DELETE',
     })
       .then(() => {
@@ -46,7 +46,7 @@ const Dashboard = () => {
 
 
   const handleSave = (editedMovie) => {
-    fetch(`http://localhost:3001/api/movies/${editedMovie._id}`, {
+    fetch(`https://watchflixott.onrender.com/api/movies/${editedMovie._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const Dashboard = () => {
   
   
   const handleCreate = () => {
-    fetch(`http://localhost:3001/api/movies`, {
+    fetch(`https://watchflixott.onrender.com/api/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const Dashboard = () => {
       .then((response) => response.json())
       .then(() => {
         console.log('New movie created:', newMovie);
-        fetch(`http://localhost:3001/api/movies`)
+        fetch(`https://watchflixott.onrender.com/api/movies`)
           .then((response) => response.json())
           .then((data) => setMovies(data))
           .catch((error) => {
