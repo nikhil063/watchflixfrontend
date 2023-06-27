@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaCheck, FaTimes, FaArrowRight } from 'react-icons/fa';
+import axios from "axios";
 
 
 const Plans = () => {
@@ -13,49 +14,60 @@ const Plans = () => {
 
 
 
-  function loadRazorpayScript() {
-    return new Promise((resolve) => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = resolve;
-      document.body.appendChild(script);
-    });
-  }
+  // function loadRazorpayScript() {
+  //   return new Promise((resolve) => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+  //     script.onload = resolve;
+  //     document.body.appendChild(script);
+  //   });
+  // }
 
-  const displayRazorpay = async () => {
+  // const checkoutHandler = async (amount) => {
+
+  // const { data: { key } } = await axios.get("http://www.localhost:4000/api/getkey")
+
+  // const { data: { order } } = await axios.post("http://localhost:4000/api/checkout", {
+  //     amount
+  // })
+
+
+  const checkoutHandler = async () => {
+
     if (selectedPlan) {
       const amount = parseFloat(selectedPlan) * 100;
-      try {
-        await loadRazorpayScript();
+      const { data: { key } } = await axios.get("http://localhost:3001/api/getkey")
 
-        const options = {
-          key: 'rzp_test_BZKmSXpXrgRayL',
-          currency: 'INR',
-          amount: amount,
-          name: 'watchflix',
-          description: 'Enjoy uninterrupted streaming!',
-          image: '',
-          handler: async function (response) {
-            
-            const paymentId = response.razorpay_payment_id;
-            console.log(paymentId);
-            // alert(`Payment successful!! Your payment id is ${paymentId}`)
+      const { data: { order } } = await axios.post("http://localhost:3001/api/checkout", {
+        amount
+      })
 
-            window.location.href = `/success?paymentId=${paymentId}`;
-          },
 
-          theme: {
-            color: '#8A0303',
-          },
-        };
+      const options = {
+        key,
+        order_id: order.id,
+        amount: order.amount,
+        currency: 'INR',
+        name: 'watchflix',
+        description: 'Enjoy uninterrupted streaming!',
+        image: '',
+        
+        callback_url: "http://localhost:3001/api/paymentverification",
 
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
-      } catch (error) {
-        console.error('Failed to load Razorpay script:', error);
-      }
-    } else {
-      console.error('No plan selected');
+        // handler: async function (response) {
+          // const paymentId = response.razorpay_payment_id;
+          // console.log(paymentId);
+          // alert(`Payment successful!! Your payment id is ${paymentId}`)
+          // window.location.href = `/success?paymentId=${paymentId}`;
+        // },
+
+        theme: {
+          color: '#8A0303',
+        },
+      };
+
+      const razor = new window.Razorpay(options);
+      razor.open();
     }
   };
 
@@ -120,7 +132,7 @@ const Plans = () => {
 
           </tbody>
         </table>
-        <div style={{ color: "white", fontFamily: "Poppins", fontSize: "2vw", display: "flex", justifyContent: "center", alignItems: "center", margin: "1vw 0 2vw" }}><button style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "green", padding: " 0.8vw 1.6vw", borderRadius: "0.5vw", width: "22vw" }} onClick={displayRazorpay}>
+        <div style={{ color: "white", fontFamily: "Poppins", fontSize: "2vw", display: "flex", justifyContent: "center", alignItems: "center", margin: "1vw 0 2vw" }}><button style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "green", padding: " 0.8vw 1.6vw", borderRadius: "0.5vw", width: "22vw" }} onClick={() => checkoutHandler()}>
           <p style={{ fontFamily: "Poppins", fontSize: "1.4vw" }}>Proceed to payment </p><FaArrowRight style={{ width: "1.5vw", height: "1.5vw" }} />
         </button></div>
       </div>;
@@ -164,7 +176,7 @@ const Plans = () => {
 
           </tbody>
         </table>
-        <div style={{ color: "white", fontFamily: "Poppins", fontSize: "2vw", display: "flex", justifyContent: "center", alignItems: "center", margin: "1vw 0 2vw" }}><button style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "green", padding: " 0.8vw 1.6vw", borderRadius: "0.5vw", width: "22vw" }} onClick={displayRazorpay}>
+        <div style={{ color: "white", fontFamily: "Poppins", fontSize: "2vw", display: "flex", justifyContent: "center", alignItems: "center", margin: "1vw 0 2vw" }}><button style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "green", padding: " 0.8vw 1.6vw", borderRadius: "0.5vw", width: "22vw" }} onClick={() => checkoutHandler()}>
           <p style={{ fontFamily: "Poppins", fontSize: "1.4vw" }}>Proceed to payment </p><FaArrowRight style={{ width: "1.5vw", height: "1.5vw" }} />
         </button></div>
       </div>;
@@ -208,7 +220,7 @@ const Plans = () => {
 
           </tbody>
         </table>
-        <div style={{ color: "white", fontFamily: "Poppins", fontSize: "2vw", display: "flex", justifyContent: "center", alignItems: "center", margin: "1vw 0 2vw" }}><button style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "green", padding: " 0.8vw 1.6vw", borderRadius: "0.5vw", width: "22vw" }} onClick={displayRazorpay}>
+        <div style={{ color: "white", fontFamily: "Poppins", fontSize: "2vw", display: "flex", justifyContent: "center", alignItems: "center", margin: "1vw 0 2vw" }}><button style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "green", padding: " 0.8vw 1.6vw", borderRadius: "0.5vw", width: "22vw" }} onClick={() => checkoutHandler()}>
           <p style={{ fontFamily: "Poppins", fontSize: "1.4vw" }}>Proceed to payment </p><FaArrowRight style={{ width: "1.5vw", height: "1.5vw" }} />
         </button></div>
       </div>;
