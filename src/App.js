@@ -1,7 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import { BrowserRouter as Router } from 'react-router-dom';
 import Home from './components/Home';
-import Homey from './components/Homey';
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Moviedetails from "./components/Moviedetails";
@@ -13,7 +12,6 @@ import Scrolltotop from "./components/Scrolltotop";
 import Dashboard from "./components/Dashboard";
 import Plans from "./components/Plans";
 import Paymentsuccess from "./components/Paymentsuccess";
-
 
 
 function App() {
@@ -30,7 +28,6 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/plans" element={<Plans />} />
         <Route path="/success" element={<Paymentsuccess />} />
-        <Route path="/homey" element={<Homey />} />
       </Routes>
     <Footer/>
     </Router>
