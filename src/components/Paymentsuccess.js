@@ -19,7 +19,7 @@ const referenceNum = searchQuery.get("reference")
           <h1 style={{color:"white", fontSize:"3vw", fontFamily:"Poppins"}}>Payment Successful!</h1> <FaCheck style={{color:"white", width:"8vw",height:"8vw", padding:"1vw", borderRadius:"100vw", borderWidth:"0.2vw", borderColor:"white", backgroundColor:"green"}} />
       </div>
       <div style={{display:"flex", }}>
-          <p style={{color:"#A8A8A8", fontSize:"1.6vw", padding:"0.8vw", fontFamily:"Poppins"}}>Reference No. is:</p> <p style={{color:"#A8A8A8", fontSize:"1.6vw", padding:"0.8vw", fontFamily:"Poppins", fontStyle:"bold"}}>  {referenceNum}</p>
+          <p style={{color:"#A8A8A8", fontSize:"1.6vw", padding:"0.8vw", fontFamily:"Poppins"}}>Your Payment ID is:</p> <p style={{color:"#A8A8A8", fontSize:"1.6vw", padding:"0.8vw", fontFamily:"Poppins", fontStyle:"bold"}}>{referenceNum}</p>
       </div>
     </div>
   );

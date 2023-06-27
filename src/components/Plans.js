@@ -35,7 +35,7 @@ const Plans = () => {
   const checkoutHandler = async () => {
 
     if (selectedPlan) {
-      const amount = parseFloat(selectedPlan) * 100;
+      const amount = parseFloat(selectedPlan);
       const { data: { key } } = await axios.get("http://localhost:3001/api/getkey")
 
       const { data: { order } } = await axios.post("http://localhost:3001/api/checkout", {
@@ -50,7 +50,6 @@ const Plans = () => {
         currency: 'INR',
         name: 'watchflix',
         description: 'Enjoy uninterrupted streaming!',
-        image: '',
         
         callback_url: "http://localhost:3001/api/paymentverification",
 
