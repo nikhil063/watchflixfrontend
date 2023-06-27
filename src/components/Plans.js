@@ -14,31 +14,13 @@ const Plans = () => {
 
 
 
-  // function loadRazorpayScript() {
-  //   return new Promise((resolve) => {
-  //     const script = document.createElement('script');
-  //     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-  //     script.onload = resolve;
-  //     document.body.appendChild(script);
-  //   });
-  // }
-
-  // const checkoutHandler = async (amount) => {
-
-  // const { data: { key } } = await axios.get("http://www.localhost:4000/api/getkey")
-
-  // const { data: { order } } = await axios.post("http://localhost:4000/api/checkout", {
-  //     amount
-  // })
-
-
   const checkoutHandler = async () => {
 
     if (selectedPlan) {
       const amount = parseFloat(selectedPlan);
-      const { data: { key } } = await axios.get("http://localhost:3001/api/getkey")
+      const { data: { key } } = await axios.get("https://watchflixott.onrender.com/api/getkey")
 
-      const { data: { order } } = await axios.post("http://localhost:3001/api/checkout", {
+      const { data: { order } } = await axios.post("https://watchflixott.onrender.com/api/checkout", {
         amount
       })
 
@@ -51,14 +33,7 @@ const Plans = () => {
         name: 'watchflix',
         description: 'Enjoy uninterrupted streaming!',
         
-        callback_url: "http://localhost:3001/api/paymentverification",
-
-        // handler: async function (response) {
-          // const paymentId = response.razorpay_payment_id;
-          // console.log(paymentId);
-          // alert(`Payment successful!! Your payment id is ${paymentId}`)
-          // window.location.href = `/success?paymentId=${paymentId}`;
-        // },
+        callback_url: "https://watchflixott.onrender.com/api/paymentverification",
 
         theme: {
           color: '#8A0303',
