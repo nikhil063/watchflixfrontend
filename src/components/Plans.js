@@ -233,7 +233,6 @@ const Plans = () => {
             {activeButton === 'Premium 4k' && <FaCheck style={checkmarkStyles} />}
           </button>
         </div>
-
       </div>
     </>
   )
