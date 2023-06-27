@@ -3,11 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import { FaCheck } from 'react-icons/fa';
 
 const Paymentsuccess=()=>{
-    
-// const location = useLocation();
-// const searchParams = new URLSearchParams(location.search);
-// const paymentId = searchParams.get('paymentId');
-
+  
 const searchQuery = useSearchParams()[0]
 
 const referenceNum = searchQuery.get("reference")
